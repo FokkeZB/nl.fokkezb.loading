@@ -1,0 +1,39 @@
+"#loadingMask": {
+	backgroundColor: "#5000",
+	
+	visible: false
+}
+
+"#loadingOuter": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	
+	borderRadius: '10dp',
+	backgroundColor: "#C000"
+}
+
+"#loadingInner": {
+	top: '20dp',
+	right: '20dp',
+	bottom: '20dp',
+	left: '20dp',
+	
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	
+	layout: 'vertical'
+}
+
+"#loadingSpinner": {
+	style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG
+}
+
+"#loadingMessage": {
+	top: '20dp',
+	
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	
+	color: '#fff',
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
+}
