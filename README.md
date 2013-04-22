@@ -18,9 +18,9 @@ The widget provides a simple loading mask that can be easily styled and configur
 * Add the widget as a dependency to your `app/config.json` file:
 
 ```javascript
-	"dependencies": {
-		"nl.fokkezb.loading":"1.0"
-	}
+"dependencies": {
+	"nl.fokkezb.loading":"1.0"
+}
 ```
 
 * Require the widget in the view where you need it:
@@ -35,12 +35,15 @@ The widget provides a simple loading mask that can be easily styled and configur
 function cancelled() {
 	alert('Why?!');
 }
+
 $.loading.on('cancel', cancelled);
+
 button.addEventListener('click', function (e) {
 	$.loading.show('Your message', true);
-  setTimeout(function(){
-    $.loading.hide();
-  }, 6000);
+	
+	setTimeout(function(){
+		$.loading.hide();
+	}, 6000);
 });
 ```
 
