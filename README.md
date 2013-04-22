@@ -71,6 +71,15 @@ Changes the blocking parameter.
 ### cancel
 Fires when the loading mask was hidden by the user.
 
+## Styling
+You can style all views from your `app.tss`. Just use the following ID's:
+
+* `loadingMask`: The full-screen mask.
+* `loadingOuter`: The dark box containing the activityIndicator and message.
+* `loadingInner`: Wraps arround the activityIndicator and message to provider padding.
+* `loadingSpinner`: The activityIndicator.
+* `loadingMessage`: The message. 
+
 ## Changelog
 * 1.0: Initial version
 
