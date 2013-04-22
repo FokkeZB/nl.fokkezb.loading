@@ -39,7 +39,7 @@ function cancelled() {
 $.loading.on('cancel', cancelled);
 
 button.addEventListener('click', function (e) {
-	$.loading.show('Your message', true);
+	$.loading.show('Your message', false);
 	
 	setTimeout(function(){
 		$.loading.hide();
