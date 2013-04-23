@@ -50,10 +50,11 @@ button.addEventListener('click', function (e) {
 ## Parameters
 The following parameters can be set either through `XML` or `TSS`:
 
-| Parameter | Type | Default |
-| --------- | ---- | ----------- |
-| message | `string` | Loading |
-| blocking | `boolean` | TRUE |
+| Parameter | Type | Default | Purpose |
+| --------- | ---- | ------- | ------- |
+| message | `string` | Loading | Message to show |
+| blocking | `boolean` | TRUE | Prevent users from cancelling by clicking on the mask |
+| show | `boolean` | FALSE | Automatically show the loading mask after creating it |
 
 ## Public methods
 

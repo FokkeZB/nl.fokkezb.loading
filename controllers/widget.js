@@ -1,6 +1,7 @@
 var args = arguments[0] || {},
     hasMessage = true,
-    isBlocking = true;
+    isBlocking = true,
+    parent;
 
 function show(_message, _blocking) {
     
@@ -19,6 +20,10 @@ function show(_message, _blocking) {
 function hide() {
     $.loadingSpinner.hide();
     $.loadingMask.hide();
+    
+    if (parent) {
+        parent.remove($.loadingMask);
+    }
 }
 
 function cancel() {
@@ -61,6 +66,10 @@ if (typeof args.message !== 'undefined') {
 
 if (typeof args.blocking !== 'undefined') {
     setBlocking(args.blocking);
+}
+
+if (args.show) {
+    show();
 }
 
 exports.show = show;
