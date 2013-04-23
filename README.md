@@ -52,14 +52,14 @@ The following parameters can be set either through `XML` or `TSS`:
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
-| message | `string` | Loading | Message to show |
-| blocking | `boolean` | TRUE | Prevent users from cancelling by clicking on the mask |
-| show | `boolean` | FALSE | Automatically show the loading mask after creating it |
+| message | `string` | Loading | Sets the message to show |
+| blocking | `boolean` | TRUE | Prevents users from cancelling by clicking on the mask |
+| show | `boolean` | FALSE | Calls show() directly after init |
 
 ## Public methods
 
-### show
-Shows the loading mask.
+### show([message],[blocking]])
+Shows the loading mask. A new message and blocking parameter value is optional.
 
 ### hide
 Hides the loading mask.
