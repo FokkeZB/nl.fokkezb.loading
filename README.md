@@ -19,32 +19,37 @@ The widget provides a simple loading mask that can be easily styled and configur
 
 ```javascript
 "dependencies": {
-	"nl.fokkezb.loading":"1.0"
+	"nl.fokkezb.loading":"1.1"
 }
 ```
 
-* Require the widget in the view where you need it:
+* Require the widget in the view, since 1.1 best as the last root view:
 
 ```xml
-<Widget src="nl.fokkezb.loading" id="loading" />
+<Alloy>
+	<Window>
+		<Button onClick="load">load</Button>
+	</Window>
+	<Widget src="nl.fokkezb.loading" id="loading" />
+</Alloy>
 ```
 
 * Show and hide the loading mask when you need it:
 
 ```javascript
-function cancelled() {
+function cancel() {
 	alert('Why?!');
 }
 
-$.loading.on('cancel', cancelled);
+$.loading.on('cancel', cancel);
 
-button.addEventListener('click', function (e) {
+function load() {
 	$.loading.show('Your message', false);
 	
 	setTimeout(function(){
 		$.loading.hide();
 	}, 6000);
-});
+}
 ```
 
 ## Parameters
@@ -73,7 +78,7 @@ Changes the blocking parameter.
 ## Events
 
 ### cancel
-Fires when the loading mask was hidden by the user.
+Fires when the loading mask was hidden by the user by either tapping the mask or using the Android hardware back-button.
 
 ## Styling
 You can style all views from your `app.tss`. Just use the following ID's:
@@ -85,6 +90,7 @@ You can style all views from your `app.tss`. Just use the following ID's:
 * `loadingMessage`: The message. 
 
 ## Changelog
+* 1.1: View replaced by Window, otherwise won't work in non-absolute layout modes.
 * 1.0: Initial version
 
 

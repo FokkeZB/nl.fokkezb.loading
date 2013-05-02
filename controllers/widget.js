@@ -1,7 +1,5 @@
 var args = arguments[0] || {},
-    hasMessage = true,
-    isBlocking = true,
-    parent;
+    controller;
 
 function show(_message, _blocking) {
     
@@ -13,59 +11,47 @@ function show(_message, _blocking) {
         setBlocking(_blocking);
     }
     
-    $.loadingMask.show();
-    $.loadingSpinner.show();
+    if (!controller) {
+        controller = Widget.createController('loading', args);
+        
+        controller.on('cancel', function () {
+            $.trigger('cancel');
+        });
+        
+    } else {
+        controller.show();
+    }
+    
+    return;
 }
 
 function hide() {
-    $.loadingSpinner.hide();
-    $.loadingMask.hide();
     
-    if (parent) {
-        parent.remove($.loadingMask);
+    if (controller) {
+        controller.hide();
     }
-}
-
-function cancel() {
     
-    if (!isBlocking) {
-        hide();
-        $.trigger('cancel');
-    }
+    return;
 }
 
 function setMessage(_message) {
+    args.message = _message;
     
-    if (_message === false) {
-        
-        if (hasMessage) {
-            $.loadingInner.remove($.loadingMessage);
-            hasMessage = false;
-        }
-               
-    } else {
-        
-        if (_message !== true) {
-            $.loadingMessage.text = _message;
-        }
-        
-        if (!hasMessage) {
-            $.loadingInner.add($.loadingMessage);
-            hasMessage = true;
-        }
+    if (controller) {
+        controller.setMessage(args.message);        
     }
+    
+    return;
 }
 
 function setBlocking(_blocking) {
-    isBlocking = _blocking;
-}
-
-if (typeof args.message !== 'undefined') {
-    setMessage(args.message);
-}
-
-if (typeof args.blocking !== 'undefined') {
-    setBlocking(args.blocking);
+    args.blocking = _blocking;
+    
+    if (controller) {
+        controller.setBlocking(args.blocking);
+    }
+    
+    return;
 }
 
 if (args.show) {
