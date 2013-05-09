@@ -12,11 +12,13 @@ function show(_message, _blocking) {
     }
 
     $.loadingMask.open();
+    $.loadingSpinner.show();
     
     return;
 }
 
 function hide() {
+	$.loadingSpinner.hide();
     $.loadingMask.close();
     
     return;
@@ -60,18 +62,6 @@ function setMessage(_message) {
 function setBlocking(_blocking) {
     args.blocking = (_blocking !== false);
 }
-
-$.loadingMask.addEventListener('open', function () {
-    $.loadingSpinner.show();
-    
-    return;
-});
-
-$.loadingMask.addEventListener('close', function () {
-    $.loadingSpinner.hide();
-    
-    return;
-});
 
 if (OS_ANDROID) {
     $.loadingMask.navBarHidden = $.loadingMask.navBarHidden || false;

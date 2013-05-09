@@ -19,7 +19,7 @@ The widget provides a simple loading mask that can be easily styled and configur
 
 ```javascript
 "dependencies": {
-	"nl.fokkezb.loading":"1.2"
+	"nl.fokkezb.loading":"1.2.1"
 }
 ```
 
@@ -90,6 +90,7 @@ You can style all views from your `app.tss`. Just use the following ID's:
 * `loadingMessage`: The message. 
 
 ## Changelog
+* 1.2.1: Replaced event listeners for showing indicator by direct calls, works better.
 * 1.2: View replaced by Window, otherwise won't work in non-absolute layout modes.
 * 1.1: New parameter `show` to automatically show loading mask upon creation.
 * 1.0: Initial version
