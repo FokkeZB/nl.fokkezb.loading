@@ -1,8 +1,9 @@
-"#loadingMask": {
-	backgroundColor: "#5000"
+".loadingMask": {
+	backgroundColor: "#5000",
+	backgroundImage: null // Prevent a app-wide Window-background to take over
 }
 
-"#loadingOuter": {
+".loadingOuter": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	
@@ -10,7 +11,7 @@
 	backgroundColor: "#C000"
 }
 
-"#loadingInner": {
+".loadingInner": {
 	top: '20dp',
 	right: '20dp',
 	bottom: '20dp',
@@ -22,15 +23,16 @@
 	layout: 'vertical'
 }
 
-"#loadingSpinner": {
+".loadingSpinner": {
 	style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG
 }
 
-"#loadingMessage": {
+".loadingMessage": {
 	top: '20dp',
-	
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
+
+	text: L('loadingMessage', 'Loading..'),
 	
 	color: '#fff',
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER

@@ -1,9 +1,9 @@
 <Alloy>
-	<Window id="loadingMask" onClick="cancel">
-		<View id="loadingOuter">
-			<View id="loadingInner">
-				<ActivityIndicator id="loadingSpinner" />
-				<Label id="loadingMessage" text="Loading" />
+	<Window id="loadingMask" class="loadingMask" onClick="cancel">
+		<View id="loadingOuter" class="loadingOuter">
+			<View id="loadingInner" class="loadingInner">
+				<ActivityIndicator id="loadingSpinner" class="loadingSpinner" />
+				<Label id="loadingMessage" class="loadingMessage" />
 			</View>
 		</View>
 	</Window>

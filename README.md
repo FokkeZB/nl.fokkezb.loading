@@ -19,7 +19,7 @@ The widget provides a simple loading mask that can be easily styled and configur
 
 ```javascript
 "dependencies": {
-	"nl.fokkezb.loading":"1.2.1"
+	"nl.fokkezb.loading":"1.3"
 }
 ```
 
@@ -64,7 +64,7 @@ The following parameters can be set either through `XML` or `TSS`:
 ## Public methods
 
 ### show([message],[blocking]])
-Shows the loading mask. A new message and blocking parameter value is optional.
+Shows the loading mask. A new message and blocking parameter value is optional. Set `message` to `TRUE` to reset it to the default message.
 
 ### hide
 Hides the loading mask.
@@ -81,15 +81,19 @@ Changes the blocking parameter.
 Fires when the loading mask was hidden by the user by either tapping the mask or using the Android hardware back-button.
 
 ## Styling
-You can style all views from your `app.tss`. Just use the following ID's:
+You can style all views from your `app.tss`. The default styles can be found in `loading.tss`. Be aware that the default styles are applied to classses, but to override from your `app.tss` you need to following (identical) IDs:
 
 * `loadingMask`: The full-screen mask.
 * `loadingOuter`: The dark box containing the activityIndicator and message.
 * `loadingInner`: Wraps arround the activityIndicator and message to provider padding.
 * `loadingSpinner`: The activityIndicator.
-* `loadingMessage`: The message. 
+* `loadingMessage`: The message.
+
+## Internationalization
+You can override the default message (`Loading..`) by setting the `loadingMessage` in your `strings.xml` files.
 
 ## Changelog
+* 1.3: Fully override widget style from `app.tss` and reset to default message upon show.
 * 1.2.1: Replaced event listeners for showing indicator by direct calls, works better.
 * 1.2: View replaced by Window, otherwise won't work in non-absolute layout modes.
 * 1.1: New parameter `show` to automatically show loading mask upon creation.

@@ -45,10 +45,7 @@ function setMessage(_message) {
         }
                
     } else {
-        
-        if (_message !== true) {
-            $.loadingMessage.text = _message;
-        }
+        $.loadingMessage.text = (_message === true) ? L('loadingMessage', 'Loading..') : _message;
         
         if (!hasMessage) {
             $.loadingInner.add($.loadingMessage);
