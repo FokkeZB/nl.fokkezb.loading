@@ -81,13 +81,13 @@ Changes the blocking parameter.
 Fires when the loading mask was hidden by the user by either tapping the mask or using the Android hardware back-button.
 
 ## Styling
-You can style all views from your `app.tss`. The default styles can be found in `loading.tss`. Be aware that the default styles are applied to classses, but to override from your `app.tss` you need to following (identical) IDs:
+You can style all views from your `app.tss`. The default styles can be found in [loading.tss](https://github.com/FokkeZB/nl.fokkezb.loading/blob/master/styles/loading.tss). Be aware that the default styles are applied to classses, but to override from your `app.tss` you need to following (identical) IDs:
 
-* `loadingMask`: The full-screen mask.
-* `loadingOuter`: The dark box containing the activityIndicator and message.
-* `loadingInner`: Wraps arround the activityIndicator and message to provider padding.
-* `loadingSpinner`: The activityIndicator.
-* `loadingMessage`: The message.
+* `#loadingMask`: The full-screen mask.
+* `#loadingOuter`: The dark box containing the activityIndicator and message.
+* `#loadingInner`: Wraps arround the activityIndicator and message to provider padding.
+* `#loadingSpinner`: The activityIndicator.
+* `#loadingMessage`: The message.
 
 ## Internationalization
 You can override the default message (`Loading..`) by setting the `loadingMessage` in your `strings.xml` files.
