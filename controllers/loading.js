@@ -1,5 +1,8 @@
 var args = arguments[0] || {},
-    hasMessage = true;
+    hasMessage = true,
+    hasImages = false,
+    defaultImages,
+    isShowing = false;
 
 function show(_message, _blocking) {
     
@@ -11,15 +14,30 @@ function show(_message, _blocking) {
         setBlocking(_blocking);
     }
 
-    $.loadingMask.open();
-    $.loadingSpinner.show();
+	if (isShowing) {
+		return;
+	}
+	
+	$.loadingMask.open();
+
+	hasImages ? $.loadingImages.start() : $.loadingIndicator.show();
+
+	isShowing = true;
     
     return;
 }
 
 function hide() {
-	$.loadingSpinner.hide();
+	
+	if (!isShowing) {
+		return;
+	}
+	
+	hasImages ? $.loadingImages.stop() : $.loadingIndicator.hide();
+	
     $.loadingMask.close();
+    
+    isShowing = false;
     
     return;
 }
@@ -60,6 +78,46 @@ function setBlocking(_blocking) {
     args.blocking = (_blocking !== false);
 }
 
+function setImages(_images) {
+	var _newImages = _.isArray(_images);
+	
+	if (_images === true || _newImages) {
+		
+		if (_newImages) {
+			
+			if (!defaultImages) {
+				defaultImages = $.loadingImages.images;
+			}
+			
+			$.loadingImages.images = _images;
+			
+		} else if (defaultImages) {
+			$.loadingImages.images = defaultImages;
+		}
+		
+		if (!hasImages) {
+			isShowing && $.loadingIndicator.hide();
+			$.loadingSpinner.remove($.loadingIndicator);
+			
+			$.loadingSpinner.add($.loadingImages);
+			isShowing && $.loadingImages.start();
+		}
+		
+		hasImages = true;
+	
+	} else if (_images === false && hasImages) {
+		isShowing && $.loadingImages.stop();
+		$.loadingSpinner.remove($.loadingImages);
+		
+		$.loadingSpinner.add($.loadingIndicator);
+		isShowing && $.loadingIndicator.show();
+		
+		hasImages = false;
+	}
+	
+	return;
+}
+
 if (OS_ANDROID) {
     $.loadingMask.navBarHidden = $.loadingMask.navBarHidden || false;
     $.loadingMask.addEventListener('androidback', function () {
@@ -72,6 +130,8 @@ if (OS_ANDROID) {
     });
 }
 
+setImages(args.images);
+
 show(args.message, args.blocking);
 
 exports.show = show;
@@ -79,3 +139,4 @@ exports.hide = hide;
 
 exports.setMessage = setMessage;
 exports.setBlocking = setBlocking;
+exports.setImages = setImages;

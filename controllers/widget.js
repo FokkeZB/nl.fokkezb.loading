@@ -54,6 +54,16 @@ function setBlocking(_blocking) {
     return;
 }
 
+function setImages(_images) {
+	args.images = _images;
+
+	if (controller) {
+		controller.setImages(args.images);
+	}
+	
+	return;
+}
+
 if (args.show) {
     show();
 }
@@ -63,3 +73,4 @@ exports.hide = hide;
 
 exports.setMessage = setMessage;
 exports.setBlocking = setBlocking;
+exports.setImages = setImages;

@@ -2,9 +2,12 @@
 	<Window id="loadingMask" class="loadingMask" onClick="cancel">
 		<View id="loadingOuter" class="loadingOuter">
 			<View id="loadingInner" class="loadingInner">
-				<ActivityIndicator id="loadingSpinner" class="loadingSpinner" />
+				<View id="loadingSpinner" class="loadingSpinner">
+					<ActivityIndicator id="loadingIndicator" class="loadingIndicator" />
+				</View>
 				<Label id="loadingMessage" class="loadingMessage" />
 			</View>
 		</View>
 	</Window>
+	<ImageView id="loadingImages" class="loadingImages" />
 </Alloy>

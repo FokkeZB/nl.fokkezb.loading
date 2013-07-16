@@ -24,7 +24,29 @@
 }
 
 ".loadingSpinner": {
+	top: '0dp',
+	
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE
+} 
+
+".loadingIndicator": {
+	style: Ti.UI.ActivityIndicatorStyle.BIG
+}
+
+".loadingIndicator[platform=ios]": {
 	style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG
+}
+
+".loadingImages": {
+	images: [
+		"/images/nl.fokkezb.loading/00.png", "/images/nl.fokkezb.loading/01.png",
+        "/images/nl.fokkezb.loading/02.png", "/images/nl.fokkezb.loading/03.png",
+        "/images/nl.fokkezb.loading/04.png", "/images/nl.fokkezb.loading/05.png",
+        "/images/nl.fokkezb.loading/06.png", "/images/nl.fokkezb.loading/07.png",
+        "/images/nl.fokkezb.loading/08.png", "/images/nl.fokkezb.loading/09.png",
+        "/images/nl.fokkezb.loading/10.png", "/images/nl.fokkezb.loading/11.png"
+	]
 }
 
 ".loadingMessage": {

@@ -19,7 +19,7 @@ The widget provides a simple loading mask that can be easily styled and configur
 
 ```javascript
 "dependencies": {
-	"nl.fokkezb.loading":"1.3"
+	"nl.fokkezb.loading":"1.4"
 }
 ```
 
@@ -60,6 +60,7 @@ The following parameters can be set either through `XML` or `TSS`:
 | message | `string` | Loading | Sets the message to show |
 | blocking | `boolean` | TRUE | Prevents users from cancelling by clicking on the mask |
 | show | `boolean` | FALSE | Calls show() directly after init |
+| images | `boolean` or `array` | FALSE | Shows default or given array of images as indicator |
 
 ## Public methods
 
@@ -74,6 +75,9 @@ Changes or hides the message.
 
 ### setBlocking(boolean)
 Changes the blocking parameter.
+
+### setImages(boolean|array)
+Shows default or given array of images as indicator instead of an ActivityIndicator
 
 ## Events
 
@@ -93,6 +97,7 @@ You can style all views from your `app.tss`. The default styles can be found in 
 You can override the default message (`Loading..`) by setting the `loadingMessage` in your `strings.xml` files.
 
 ## Changelog
+* 1.4: Support for image indicator
 * 1.3: Fully override widget style from `app.tss` and reset to default message upon show.
 * 1.2.1: Replaced event listeners for showing indicator by direct calls, works better.
 * 1.2: View replaced by Window, otherwise won't work in non-absolute layout modes.
