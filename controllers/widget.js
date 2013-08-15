@@ -71,6 +71,15 @@ if (args.show) {
 exports.show = show;
 exports.hide = hide;
 
+Object.defineProperty($, "visible", {
+    get: function () {
+        return controller && controller.getVisible();
+    },
+    set: function (visible) {
+        return visible ? show() : hide();
+    }
+});
+
 exports.setMessage = setMessage;
 exports.setBlocking = setBlocking;
 exports.setImages = setImages;

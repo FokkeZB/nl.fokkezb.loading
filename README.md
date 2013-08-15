@@ -62,12 +62,17 @@ The following parameters can be set either through `XML` or `TSS`:
 | show | `boolean` | FALSE | Calls show() directly after init |
 | images | `boolean` or `array` | FALSE | Shows default or given array of images as indicator |
 
+## Public properties
+
+### visible
+You'll get `TRUE` if the loading mask is currently shown. If set to `TRUE` or `FALSE` it will call `show()` or `hide()`.
+
 ## Public methods
 
 ### show([message],[blocking]])
 Shows the loading mask. A new message and blocking parameter value is optional. Set `message` to `TRUE` to reset it to the default message.
 
-### hide
+### hide()
 Hides the loading mask.
 
 ### setMessage(string|false)
@@ -103,7 +108,6 @@ You can override the default message (`Loading..`) by setting the `loadingMessag
 * 1.2: View replaced by Window, otherwise won't work in non-absolute layout modes.
 * 1.1: New parameter `show` to automatically show loading mask upon creation.
 * 1.0: Initial version
-
 
 ## License
 
