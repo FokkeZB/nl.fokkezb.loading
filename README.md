@@ -19,7 +19,7 @@ The widget provides a simple loading mask that can be easily styled and configur
 
 ```javascript
 "dependencies": {
-	"nl.fokkezb.loading":"1.4"
+	"nl.fokkezb.loading":"1.4.1"
 }
 ```
 
