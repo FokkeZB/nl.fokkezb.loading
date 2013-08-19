@@ -18,9 +18,14 @@ function show(_message, _blocking) {
         return;
     }
 
-    $.loadingMask.open();
+    if (OS_ANDROID) {
+        $.loadingProgressIndicator.show();
 
-    hasImages ? $.loadingImages.start() : $.loadingIndicator.show();
+    } else {
+        $.loadingMask.open();
+
+        hasImages ? $.loadingImages.start() : $.loadingIndicator.show();
+    }
 
     isShowing = true;
 
@@ -33,9 +38,14 @@ function hide() {
         return;
     }
 
-    hasImages ? $.loadingImages.stop() : $.loadingIndicator.hide();
+    if (OS_ANDROID) {
+        $.loadingProgressIndicator.hide();
 
-    $.loadingMask.close();
+    } else {
+        hasImages ? $.loadingImages.stop() : $.loadingIndicator.hide();
+
+        $.loadingMask.close();
+    }
 
     isShowing = false;
 
@@ -49,7 +59,10 @@ function getVisible() {
 function cancel() {
 
     if (args.blocking === false) {
-        hide();
+
+        if (!OS_ANDROID) {
+            hide();
+        }
 
         $.trigger('cancel');
     }
@@ -62,15 +75,28 @@ function setMessage(_message) {
     if (_message === false) {
 
         if (hasMessage) {
-            $.loadingInner.remove($.loadingMessage);
+            
+            if (OS_ANDROID) {
+                $.loadingProgressIndicator.message = null;
+            } else {
+                $.loadingInner.remove($.loadingMessage);
+            }
+
             hasMessage = false;
         }
 
     } else {
-        $.loadingMessage.text = (_message === true) ? L('loadingMessage', 'Loading..') : _message;
+        var message = (_message === true) ? L('loadingMessage', 'Loading..') : _message;
+
+        if (OS_ANDROID) {
+            $.loadingProgressIndicator.message = message;
+        } else {
+            $.loadingMessage.text = message;
+        }
 
         if (!hasMessage) {
-            $.loadingInner.add($.loadingMessage);
+            OS_ANDROID || $.loadingInner.add($.loadingMessage);
+            
             hasMessage = true;
         }
     }
@@ -80,9 +106,19 @@ function setMessage(_message) {
 
 function setBlocking(_blocking) {
     args.blocking = (_blocking !== false);
+
+    if (OS_ANDROID) {
+        $.loadingProgressIndicator.cancelable = !args.blocking;
+    }
 }
 
 function setImages(_images) {
+
+    if (OS_ANDROID) {
+        Ti.API.info('[LOADING] No image indicator on Android');
+        return;
+    }
+
     var _newImages = _.isArray(_images);
 
     if (_images === true || _newImages) {
@@ -122,19 +158,9 @@ function setImages(_images) {
     return;
 }
 
-if (OS_ANDROID) {
-    $.loadingMask.navBarHidden = $.loadingMask.navBarHidden || false;
-    $.loadingMask.addEventListener('androidback', function() {
-
-        if (!args.blocking) {
-            cancel();
-        }
-
-        return;
-    });
+if (!OS_ANDROID) {
+    setImages(args.images);
 }
-
-setImages(args.images);
 
 show(args.message, args.blocking);
 
