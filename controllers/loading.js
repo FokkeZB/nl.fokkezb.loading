@@ -18,14 +18,9 @@ function show(_message, _blocking) {
         return;
     }
 
-    if (OS_ANDROID) {
-        $.loadingProgressIndicator.show();
+    $.loadingMask.open();
 
-    } else {
-        $.loadingMask.open();
-
-        hasImages ? $.loadingImages.start() : $.loadingIndicator.show();
-    }
+    hasImages ? $.loadingImages.start() : $.loadingIndicator.show();
 
     isShowing = true;
 
@@ -38,14 +33,9 @@ function hide() {
         return;
     }
 
-    if (OS_ANDROID) {
-        $.loadingProgressIndicator.hide();
+    hasImages ? $.loadingImages.stop() : $.loadingIndicator.hide();
 
-    } else {
-        hasImages ? $.loadingImages.stop() : $.loadingIndicator.hide();
-
-        $.loadingMask.close();
-    }
+    $.loadingMask.close();
 
     isShowing = false;
 
@@ -60,9 +50,7 @@ function cancel() {
 
     if (args.blocking === false) {
 
-        if (!OS_ANDROID) {
-            hide();
-        }
+        hide();
 
         $.trigger('cancel');
     }
@@ -74,13 +62,8 @@ function setMessage(_message) {
 
     if (_message === false) {
 
-        if (hasMessage) {
-            
-            if (OS_ANDROID) {
-                $.loadingProgressIndicator.message = null;
-            } else {
-                $.loadingInner.remove($.loadingMessage);
-            }
+        if (hasMessage) {            
+            $.loadingInner.remove($.loadingMessage);
 
             hasMessage = false;
         }
@@ -88,14 +71,10 @@ function setMessage(_message) {
     } else {
         var message = (_message === true) ? L('loadingMessage', 'Loading..') : _message;
 
-        if (OS_ANDROID) {
-            $.loadingProgressIndicator.message = message;
-        } else {
-            $.loadingMessage.text = message;
-        }
+        $.loadingMessage.text = message;
 
         if (!hasMessage) {
-            OS_ANDROID || $.loadingInner.add($.loadingMessage);
+            $.loadingInner.add($.loadingMessage);
             
             hasMessage = true;
         }
@@ -106,19 +85,9 @@ function setMessage(_message) {
 
 function setBlocking(_blocking) {
     args.blocking = (_blocking !== false);
-
-    if (OS_ANDROID) {
-        $.loadingProgressIndicator.cancelable = !args.blocking;
-    }
 }
 
 function setImages(_images) {
-
-    if (OS_ANDROID) {
-        Ti.API.info('[LOADING] No image indicator on Android');
-        return;
-    }
-
     var _newImages = _.isArray(_images);
 
     if (_images === true || _newImages) {
@@ -158,9 +127,7 @@ function setImages(_images) {
     return;
 }
 
-if (!OS_ANDROID) {
-    setImages(args.images);
-}
+setImages(args.images);
 
 show(args.message, args.blocking);
 

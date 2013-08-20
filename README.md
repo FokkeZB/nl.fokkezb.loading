@@ -4,17 +4,13 @@ This is a widget for the [Alloy](http://projects.appcelerator.com/alloy/docs/All
 
 The widget provides a simple loading mask that can be easily styled and configured.
 
-### Android
-On Android HeavyWeight windows don't support a backgroundColor with an alpha-channel. Before 1.5 this meant the loading mask had a solid grey background. Since 1.5 the widget falls back to `Ti.UI.Android.ProgressIndicator`, waiting for [this issue](https://jira.appcelerator.org/browse/TC-2774) to be solved.
-
 ## Screenshot
-![Loading Mask](https://raw.github.com/FokkeZB/nl.fokkezb.loading/master/docs/screenshot.png) ![Android](https://raw.github.com/FokkeZB/nl.fokkezb.loading/master/docs/android.png)
+![Loading Mask](https://raw.github.com/FokkeZB/nl.fokkezb.loading/master/docs/screenshot.png)
 
 ## Features
 * Fully stylable via your `app.tss`.
 * If enabled, hides and sends a `cancelled` event when tapped on by the user.
 * Message and ability to be cancelled can be set any time, also in one call.
-* Falls back on the new `Ti.UI.Android.ProgressIndicator` for Android.
 
 ## Quick Start
 * Download the latest [release](https://github.com/FokkeZB/nl.fokkezb.loading/releases) of the widget.
@@ -23,7 +19,7 @@ On Android HeavyWeight windows don't support a backgroundColor with an alpha-cha
 
 ```javascript
 "dependencies": {
-	"nl.fokkezb.loading":"1.5"
+	"nl.fokkezb.loading":"1.5.1"
 }
 ```
 
@@ -64,7 +60,7 @@ The following parameters can be set either through `XML` or `TSS`:
 | message | `string` | Loading | Sets the message to show |
 | blocking | `boolean` | TRUE | Prevents users from cancelling by clicking on the mask |
 | show | `boolean` | FALSE | Calls show() directly after init |
-| images | `boolean` or `array` | FALSE | Shows default or given array of images as indicator (not for Android) |
+| images | `boolean` or `array` | FALSE | Shows default or given array of images as indicator |
 
 ## Public properties
 
@@ -93,7 +89,7 @@ Shows default or given array of images as indicator instead of an ActivityIndica
 ### cancel
 Fires when the loading mask was hidden by the user by either tapping the mask or using the Android hardware back-button.
 
-## Styling (not for Android)
+## Styling
 You can style all views from your `app.tss`. The default styles can be found in [loading.tss](https://github.com/FokkeZB/nl.fokkezb.loading/blob/master/styles/loading.tss). Be aware that the default styles are applied to classses, but to override from your `app.tss` you need to following (identical) IDs:
 
 * `#loadingMask`: The full-screen mask.
@@ -106,6 +102,7 @@ You can style all views from your `app.tss`. The default styles can be found in 
 You can override the default message (`Loading..`) by setting the `loadingMessage` in your `strings.xml` files.
 
 ## Changelog
+* 1.5.1: Reverted 1.5 change thanks to `opacity` fix.
 * 1.5: Falls back to `Ti.UI.Android.ProgressIndicator` for Android
 * 1.4: Support for image indicator
 * 1.3: Fully override widget style from `app.tss` and reset to default message upon show.

@@ -1,5 +1,5 @@
 <Alloy>
-	<Window  id="loadingMask" class="loadingMask" onClick="cancel" platform="ios,mobileweb,blackberry">
+	<Window  id="loadingMask" class="loadingMask" onClick="cancel">
 		<View id="loadingOuter" class="loadingOuter">
 			<View id="loadingInner" class="loadingInner">
 				<View id="loadingSpinner" class="loadingSpinner">
@@ -9,6 +9,5 @@
 			</View>
 		</View>
 	</Window>
-	<ImageView id="loadingImages" class="loadingImages" platform="ios,mobileweb,blackberry" />
-    <ProgressIndicator ns="Ti.UI.Android" platform="android" id="loadingProgressIndicator" location="Ti.UI.Android.PROGRESS_INDICATOR_DIALOG" type="Ti.UI.Android.PROGRESS_INDICATOR_INDETERMINANT" onCancel="cancel" />
+	<ImageView id="loadingImages" class="loadingImages" />
 </Alloy>

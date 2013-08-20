@@ -1,6 +1,7 @@
 ".loadingMask": {
 	backgroundColor: "#5000",
-	backgroundImage: null // Prevent a app-wide Window-background to take over
+	backgroundImage: null, // Prevent a app-wide Window-background to take over
+	opacity: 1.0 // Or alpha channel in backgroundColor won't work
 }
 
 ".loadingOuter": {
