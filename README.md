@@ -19,7 +19,7 @@ The widget provides a simple loading mask that can be easily styled and configur
 
 ```javascript
 "dependencies": {
-	"nl.fokkezb.loading":"1.5.1"
+	"nl.fokkezb.loading":"1.5.2"
 }
 ```
 
@@ -102,6 +102,7 @@ You can style all views from your `app.tss`. The default styles can be found in 
 You can override the default message (`Loading..`) by setting the `loadingMessage` in your `strings.xml` files.
 
 ## Changelog
+* 1.5.2: Fixes empty loading mask on second show on Android
 * 1.5.1: Reverted 1.5 change thanks to `opacity` fix.
 * 1.5: Falls back to `Ti.UI.Android.ProgressIndicator` for Android
 * 1.4: Support for image indicator

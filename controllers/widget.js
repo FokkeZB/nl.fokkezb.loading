@@ -1,5 +1,9 @@
 var args = arguments[0] || {},
-    controller;
+    win;
+
+if (args.show) {
+    show();
+}
 
 function show(_message, _blocking) {
     
@@ -11,15 +15,10 @@ function show(_message, _blocking) {
         setBlocking(_blocking);
     }
     
-    if (!controller) {
-        controller = Widget.createController('loading', args);
-        
-        controller.on('cancel', function () {
-            $.trigger('cancel');
-        });
-        
-    } else {
-        controller.show();
+    if (!win) {
+        win = Widget.createController('window', args);
+            
+        win.on('cancel', onCancel);
     }
     
     return;
@@ -27,18 +26,26 @@ function show(_message, _blocking) {
 
 function hide() {
     
-    if (controller) {
-        controller.hide();
+    if (win) {
+        win.off('cancel', onCancel);
+
+        win.hide();
+
+        win = null;
     }
     
     return;
 }
 
+function onCancel() {
+    $.trigger('cancel');
+}
+
 function setMessage(_message) {
     args.message = _message;
     
-    if (controller) {
-        controller.setMessage(args.message);        
+    if (win) {
+        win.setMessage(args.message);
     }
     
     return;
@@ -47,8 +54,8 @@ function setMessage(_message) {
 function setBlocking(_blocking) {
     args.blocking = _blocking;
     
-    if (controller) {
-        controller.setBlocking(args.blocking);
+    if (win) {
+        win.setBlocking(args.blocking);
     }
     
     return;
@@ -57,29 +64,24 @@ function setBlocking(_blocking) {
 function setImages(_images) {
 	args.images = _images;
 
-	if (controller) {
-		controller.setImages(args.images);
+	if (win) {
+		win.setImages(args.images);
 	}
 	
 	return;
 }
 
-if (args.show) {
-    show();
-}
-
-exports.show = show;
-exports.hide = hide;
-
 Object.defineProperty($, "visible", {
     get: function () {
-        return controller && controller.getVisible();
+        return !!win;
     },
     set: function (visible) {
         return visible ? show() : hide();
     }
 });
 
+exports.show = show;
+exports.hide = hide;
 exports.setMessage = setMessage;
 exports.setBlocking = setBlocking;
 exports.setImages = setImages;

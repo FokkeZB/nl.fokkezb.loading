@@ -20,11 +20,13 @@ function show(_message, _blocking) {
 
     $.loadingMask.open();
 
+    return;
+}
+
+function onOpen() {
     hasImages ? $.loadingImages.start() : $.loadingIndicator.show();
 
     isShowing = true;
-
-    return;
 }
 
 function hide() {
@@ -33,17 +35,15 @@ function hide() {
         return;
     }
 
-    hasImages ? $.loadingImages.stop() : $.loadingIndicator.hide();
-
     $.loadingMask.close();
-
-    isShowing = false;
 
     return;
 }
 
-function getVisible() {
-    return isShowing;
+function onClose() {
+    hasImages ? $.loadingImages.stop() : $.loadingIndicator.hide();
+
+    isShowing = false;
 }
 
 function cancel() {
@@ -133,8 +133,6 @@ show(args.message, args.blocking);
 
 exports.show = show;
 exports.hide = hide;
-
-exports.getVisible = getVisible;
 
 exports.setMessage = setMessage;
 exports.setBlocking = setBlocking;
