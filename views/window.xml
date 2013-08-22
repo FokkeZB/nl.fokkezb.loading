@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="loadingMask" class="loadingMask" onOpen="onOpen" onClose="onClose" onClick="cancel">
+	<Window id="loadingMask" class="loadingMask" onClick="cancel">
 		<View id="loadingOuter" class="loadingOuter">
 			<View id="loadingInner" class="loadingInner">
 				<View id="loadingSpinner" class="loadingSpinner">

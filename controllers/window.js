@@ -20,13 +20,11 @@ function show(_message, _blocking) {
 
     $.loadingMask.open();
 
-    return;
-}
-
-function onOpen() {
     hasImages ? $.loadingImages.start() : $.loadingIndicator.show();
 
     isShowing = true;
+
+    return;
 }
 
 function hide() {
@@ -37,13 +35,11 @@ function hide() {
 
     $.loadingMask.close();
 
-    return;
-}
-
-function onClose() {
     hasImages ? $.loadingImages.stop() : $.loadingIndicator.hide();
 
     isShowing = false;
+
+    return;
 }
 
 function cancel() {
