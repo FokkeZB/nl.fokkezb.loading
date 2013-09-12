@@ -1,14 +1,15 @@
 ".loadingMask": {
 	backgroundColor: "#5000",
 	backgroundImage: null, // Prevent a app-wide Window-background to take over
-	opacity: 1.0 // Or alpha channel in backgroundColor won't work
+	opacity: 1.0, // Or alpha channel in backgroundColor won't work,
+	modal: false // Heavy weight on Android
 }
 
 ".loadingOuter": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	
-	borderRadius: '10dp',
+	borderRadius: 10,
 	backgroundColor: "#C000"
 }
 
@@ -24,14 +25,8 @@
 	layout: 'vertical'
 }
 
-".loadingSpinner": {
-	top: '0dp',
-	
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE
-} 
-
 ".loadingIndicator": {
+	top: '0dp',
 	style: Ti.UI.ActivityIndicatorStyle.BIG
 }
 
@@ -40,6 +35,7 @@
 }
 
 ".loadingImages": {
+	top: '0dp',
 	images: [
 		"/images/nl.fokkezb.loading/00.png", "/images/nl.fokkezb.loading/01.png",
         "/images/nl.fokkezb.loading/02.png", "/images/nl.fokkezb.loading/03.png",

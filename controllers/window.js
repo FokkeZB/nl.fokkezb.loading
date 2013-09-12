@@ -1,135 +1,120 @@
 var args = arguments[0] || {},
-    hasMessage = true,
-    hasImages = false,
-    defaultImages,
-    isShowing = false;
+    useImages = false,
+    cancelable = false,
 
-function show(_message, _blocking) {
+    // Bug: https://jira.appcelerator.org/browse/TC-2857
+    isOpen = false;
 
-    if (typeof _message !== 'undefined') {
-        setMessage(_message);
+init();
+
+function init() {
+
+    if ($.loadingMask.images) {
+        useImages = true;
+
+        $.loadingInner.remove($.loadingIndicator);
+        $.loadingIndicator = null;
+
+    } else {
+        $.loadingInner.remove($.loadingImages);
+        $.loadingImages = null;
     }
 
-    if (typeof _blocking !== 'undefined') {
-        setBlocking(_blocking);
+    if (OS_ANDROID) {
+        $.loadingMask.addEventListener('androidback', cancel);
     }
 
-    if (isShowing) {
+    update(args.message, args.cancelable);
+
+    // Bug: https://jira.appcelerator.org/browse/TC-2857
+    if (OS_ANDROID) {
+        $.loadingMask.addEventListener('open', function(e) {
+            isOpen = true;
+        });
+    }
+
+    args = null;
+}
+
+function update(_message, _cancelable) {
+    $.loadingMessage.text = _message || L('loadingMessage', 'Loading...');
+    cancelable = _cancelable;
+}
+
+function cancel(e) {
+
+    if (!cancelable) {
+
+        if (OS_ANDROID && e.type === 'androidback') {
+            var intent = Ti.Android.createIntent({
+                action: Ti.Android.ACTION_MAIN
+            });
+            intent.addCategory(Ti.Android.CATEGORY_HOME);
+            Ti.Android.currentActivity.startActivity(intent);
+        }
+
         return;
     }
+
+    close();
+
+    if (_.isFunction(cancelable)) {
+        cancelable();
+    }
+
+    return;
+}
+
+function open() {
+    Ti.API.debug('window open ' + $.loadingMask.n);
 
     $.loadingMask.open();
 
-    hasImages ? $.loadingImages.start() : $.loadingIndicator.show();
-
-    isShowing = true;
-
-    return;
+    if (useImages) {
+        $.loadingImages.start();
+    } else {
+        $.loadingIndicator.show();
+    }
 }
 
-function hide() {
+function close() {
 
-    if (!isShowing) {
-        return;
+    if (!OS_ANDROID || isOpen) {
+        _close();
+
+    // Bug: https://jira.appcelerator.org/browse/TC-2857
+    } else {
+        var interval = setInterval(function () {
+            if (isOpen) {
+                _close();
+                clearInterval(interval);
+            }
+        }, 100);
     }
+}
+
+function _close() {
 
     $.loadingMask.close();
 
-    hasImages ? $.loadingImages.stop() : $.loadingIndicator.hide();
-
-    isShowing = false;
-
-    return;
-}
-
-function cancel() {
-
-    if (args.blocking === false) {
-
-        hide();
-
-        $.trigger('cancel');
-    }
-
-    return;
-}
-
-function setMessage(_message) {
-
-    if (_message === false) {
-
-        if (hasMessage) {            
-            $.loadingInner.remove($.loadingMessage);
-
-            hasMessage = false;
-        }
-
+    if (useImages) {
+        $.loadingImages.stop();
     } else {
-        var message = (_message === true) ? L('loadingMessage', 'Loading..') : _message;
-
-        $.loadingMessage.text = message;
-
-        if (!hasMessage) {
-            $.loadingInner.add($.loadingMessage);
-            
-            hasMessage = true;
-        }
+        $.loadingIndicator.hide();
     }
 
-    return;
+    cancelable = null;
 }
 
-function setBlocking(_blocking) {
-    args.blocking = (_blocking !== false);
+function onFocus(e) {
+    $.hasFocus = true;
 }
 
-function setImages(_images) {
-    var _newImages = _.isArray(_images);
-
-    if (_images === true || _newImages) {
-
-        if (_newImages) {
-
-            if (!defaultImages) {
-                defaultImages = $.loadingImages.images;
-            }
-
-            $.loadingImages.images = _images;
-
-        } else if (defaultImages) {
-            $.loadingImages.images = defaultImages;
-        }
-
-        if (!hasImages) {
-            isShowing && $.loadingIndicator.hide();
-            $.loadingSpinner.remove($.loadingIndicator);
-
-            $.loadingSpinner.add($.loadingImages);
-            isShowing && $.loadingImages.start();
-        }
-
-        hasImages = true;
-
-    } else if (_images === false && hasImages) {
-        isShowing && $.loadingImages.stop();
-        $.loadingSpinner.remove($.loadingImages);
-
-        $.loadingSpinner.add($.loadingIndicator);
-        isShowing && $.loadingIndicator.show();
-
-        hasImages = false;
-    }
-
-    return;
+function onBlur(e) {
+    $.hasFocus = false;
 }
 
-setImages(args.images);
-
-show(args.message, args.blocking);
-
-exports.show = show;
-exports.hide = hide;
-
-exports.setMessage = setMessage;
-exports.setBlocking = setBlocking;
-exports.setImages = setImages;
+exports.hasFocus = true;
+exports.open = open;
+exports.update = update;
+exports.close = close;

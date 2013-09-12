@@ -1,79 +1,40 @@
 var args = arguments[0] || {},
-    win;
+    ctrl;
 
-if (args.show) {
-    show();
-}
+function show(_message, _cancelable) {
 
-function show(_message, _blocking) {
-    
-    if (typeof _message !== 'undefined') {
-        setMessage(_message);
+    if (ctrl && ctrl.hasFocus) {
+        ctrl.update(_message, _cancelable);
+        return;
     }
-    
-    if (typeof _blocking !== 'undefined') {
-        setBlocking(_blocking);
+
+    var newCtrl = Widget.createController('window', {
+        message: _message,
+        cancelable: _cancelable
+    });
+
+    newCtrl.open();
+
+    if (ctrl) {
+        hide();
     }
-    
-    if (!win) {
-        win = Widget.createController('window', args);
-            
-        win.on('cancel', onCancel);
-    }
-    
-    return;
+
+    ctrl = newCtrl;
 }
 
 function hide() {
     
-    if (win) {
-        win.off('cancel', onCancel);
-
-        win.hide();
-
-        win = null;
+    if (ctrl) {
+        ctrl.close();
+        ctrl = null;
     }
-    
+
     return;
-}
-
-function onCancel() {
-    $.trigger('cancel');
-}
-
-function setMessage(_message) {
-    args.message = _message;
-    
-    if (win) {
-        win.setMessage(args.message);
-    }
-    
-    return;
-}
-
-function setBlocking(_blocking) {
-    args.blocking = _blocking;
-    
-    if (win) {
-        win.setBlocking(args.blocking);
-    }
-    
-    return;
-}
-
-function setImages(_images) {
-	args.images = _images;
-
-	if (win) {
-		win.setImages(args.images);
-	}
-	
-	return;
 }
 
 Object.defineProperty($, "visible", {
     get: function () {
-        return !!win;
+        return (ctrl && ctrl.hasFocus);
     },
     set: function (visible) {
         return visible ? show() : hide();
@@ -82,6 +43,3 @@ Object.defineProperty($, "visible", {
 
 exports.show = show;
 exports.hide = hide;
-exports.setMessage = setMessage;
-exports.setBlocking = setBlocking;
-exports.setImages = setImages;

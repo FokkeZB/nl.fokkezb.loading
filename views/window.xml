@@ -1,13 +1,11 @@
 <Alloy>
-	<Window id="loadingMask" class="loadingMask" onClick="cancel">
+	<Window id="loadingMask" class="loadingMask" onClick="cancel" onFocus="onFocus" onBlur="onBlur">
 		<View id="loadingOuter" class="loadingOuter">
 			<View id="loadingInner" class="loadingInner">
-				<View id="loadingSpinner" class="loadingSpinner">
-					<ActivityIndicator id="loadingIndicator" class="loadingIndicator" />
-				</View>
+				<ActivityIndicator id="loadingIndicator" class="loadingIndicator" />
+				<ImageView id="loadingImages" class="loadingImages" />
 				<Label id="loadingMessage" class="loadingMessage" />
 			</View>
 		</View>
 	</Window>
-	<ImageView id="loadingImages" class="loadingImages" />
 </Alloy>
