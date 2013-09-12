@@ -26,7 +26,7 @@ The widget provides a simple loading mask that can be easily styled and configur
 * Create a global instance of the widget in `alloy.js`:
 
 ```javascript
-Alloy.Globals = Alloy.createWidget("nl.fokkezb.loading");
+Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
 ```
 
 * Show and hide the loading mask when you need it:
@@ -36,13 +36,13 @@ function cancel() {
 	alert('Why?!');
 }
 
-$.loading.on('cancel', cancel);
+Alloy.Globals.loading.on('cancel', cancel);
 
 function load() {
-	$.loading.show('Your message', false);
+	Alloy.Globals.loading.show('Your message', false);
 	
 	setTimeout(function(){
-		$.loading.hide();
+		Alloy.Globals.loading.hide();
 	}, 6000);
 }
 ```
