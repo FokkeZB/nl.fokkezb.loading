@@ -17,33 +17,33 @@ The widget provides a simple loading mask that can be easily styled and configur
 * Unzip the folder to your project under `app/widgets/nl.fokkezb.loading`.
 * Add the widget as a dependency to your `app/config.json` file:
 
-```javascript
-"dependencies": {
-	"nl.fokkezb.loading":"1.6"
-}
-```
+    ```javascript
+    "dependencies": {
+    	"nl.fokkezb.loading":"1.6"
+    }
+    ```
 
 * Create a global instance of the widget in `alloy.js`:
 
-```javascript
-Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
-```
+    ```javascript
+    Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
+    ```
 
 * Show and hide the loading mask when you need it:
 
-```javascript
-function cancel() {
-	alert('Why?!');
-}
-
-function load() {
-	Alloy.Globals.loading.show('Your message', cancel);
-	
-	setTimeout(function(){
-		Alloy.Globals.loading.hide();
-	}, 6000);
-}
-```
+    ```javascript
+    function cancel() {
+    	alert('Why?!');
+    }
+    
+    function load() {
+    	Alloy.Globals.loading.show('Your message', false);
+    	
+    	setTimeout(function(){
+    		Alloy.Globals.loading.hide();
+    	}, 6000);
+    }
+    ```
 
 ## Public properties
 
