@@ -23,15 +23,10 @@ The widget provides a simple loading mask that can be easily styled and configur
 }
 ```
 
-* Require the widget as the second top-level view:
+* Create a global instance of the widget in `alloy.js`:
 
-```xml
-<Alloy>
-	<Window>
-		<Button onClick="load">load</Button>
-	</Window>
-	<Widget src="nl.fokkezb.loading" id="loading" />
-</Alloy>
+```javascript
+Alloy.Globals = Alloy.createWidget("nl.fokkezb.loading");
 ```
 
 * Show and hide the loading mask when you need it:
@@ -53,7 +48,7 @@ function load() {
 ```
 
 ## Parameters
-The following parameters can be set either through `XML` or `TSS`:
+The following parameters can be set by passing an object with one or more options as the second parameter for `createWidget`:
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
