@@ -38,7 +38,9 @@ function init() {
 
 function update(_message, _cancelable) {
     $.loadingMessage.text = _message || L('loadingMessage', 'Loading...');
-    cancelable = _cancelable;
+    if (_cancelable !== undefined) {
+      cancelable = _cancelable;
+    }
 }
 
 function cancel(e) {
