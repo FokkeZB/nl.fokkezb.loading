@@ -41,5 +41,11 @@ Object.defineProperty($, "visible", {
     }
 });
 
+exports.changeMessage = function(_message) {
+  if (ctrl) {
+    ctrl.update(_message);
+  }
+}
+
 exports.show = show;
 exports.hide = hide;
