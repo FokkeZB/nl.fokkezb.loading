@@ -13,16 +13,19 @@ The widget provides a simple loading mask that can be easily styled and configur
 * Message and ability to be cancelled can be set every time it's used.
 
 ## Quick Start
-* Download the latest [release](https://github.com/FokkeZB/nl.fokkezb.loading/releases) of the widget.
-* Unzip the folder to your project under `app/widgets/nl.fokkezb.loading`.
-* Add the widget as a dependency to your `app/config.json` file:
 
-    ```javascript
-    "dependencies": {
-    	"nl.fokkezb.loading":"1.6"
-    }
-    ```
+* Use `gittio install nl.fokkezb.loading` to install via [gitTio](http://gitt.io/cli) or:
 
+  * Download the latest [release](https://github.com/FokkeZB/nl.fokkezb.loading/releases) of the widget.
+  * Unzip the folder to your project under `app/widgets/nl.fokkezb.loading`.
+  * Add the widget as a dependency to your `app/config.json` file:
+
+        ```javascript
+        "dependencies": {
+        	"nl.fokkezb.loading":"1.6"
+        }
+        ```
+    
 * Create a global instance of the widget in `alloy.js`:
 
     ```javascript
