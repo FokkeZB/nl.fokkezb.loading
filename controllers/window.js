@@ -1,6 +1,6 @@
 var args = arguments[0] || {},
     useImages = false,
-    cancelable = false,
+    cancelable = null,
 
     // Bug: https://jira.appcelerator.org/browse/TC-2857
     isOpen = false;
@@ -56,17 +56,16 @@ function cancel(e) {
         return;
     }
 
-    close();
-
-    if (_.isFunction(cancelable)) {
+    if (cancelable) {
         cancelable();
     }
+
+    close();
 
     return;
 }
 
 function open() {
-    Ti.API.debug('window open ' + $.loadingMask.n);
 
     $.loadingMask.open();
 

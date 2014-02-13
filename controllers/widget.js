@@ -1,5 +1,4 @@
-var args = arguments[0] || {},
-    ctrl;
+var ctrl;
 
 function show(_message, _cancelable) {
 
