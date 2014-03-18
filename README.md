@@ -1,4 +1,4 @@
-# Loading Mask Widget
+# Loading Mask Widget [![Titanium](http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png)](http://www.appcelerator.com/titanium/) [![Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http://www.appcelerator.com/alloy/)
 ## Overview
 This is a widget for the [Alloy](http://projects.appcelerator.com/alloy/docs/Alloy-bootstrap/index.html) MVC framework of [Appcelerator](http://www.appcelerator.com)'s [Titanium](http://www.appcelerator.com/platform) platform.
 
@@ -12,7 +12,7 @@ The widget provides a simple loading mask that can be easily styled and configur
 * Can be set to be cancelable by user, setting a function to be called in that case.
 * Message and ability to be cancelled can be set every time it's used.
 
-## Quick Start
+## Quick Start [![gitTio](http://gitt.io/badge.png)](http://gitt.io/component/nl.fokkezb.loading)
 
 * Use `gittio install nl.fokkezb.loading` to install via [gitTio](http://gitt.io/cli) or:
 
