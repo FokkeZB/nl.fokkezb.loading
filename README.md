@@ -62,7 +62,7 @@ Shows the loading mask or updates the existing, if it's still the top window. Si
 Hides the loading mask.
 
 ## Styling
-You can style all views from your `app.tss`. The default styles can be found in [loading.tss](https://github.com/FokkeZB/nl.fokkezb.loading/blob/master/styles/loading.tss). Be aware that the default styles are applied to classses, but to override from your `app.tss` you need to following (identical) IDs:
+You can style all views from your `app.tss`. The default styles can be found in [window.tss](styles/window.tss). Be aware that the default styles are applied to classses, but to override from your `app.tss` you need to following (identical) IDs:
 
 * `#loadingMask`: The full-screen mask.
     * Set `images` to `true` to use the `#loadingImages` indicator.
