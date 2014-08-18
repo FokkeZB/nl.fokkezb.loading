@@ -1,0 +1,9 @@
+<Alloy>
+
+	<Window>
+		
+    <Button onClick="example">README example</Button>
+
+	</Window>
+
+</Alloy>
