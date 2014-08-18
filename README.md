@@ -22,7 +22,7 @@ The widget provides a simple loading mask that can be easily styled and configur
 
         ```javascript
         "dependencies": {
-        	"nl.fokkezb.loading":"1.6"
+        	"nl.fokkezb.loading":"*"
         }
         ```
     
@@ -47,6 +47,8 @@ The widget provides a simple loading mask that can be easily styled and configur
     	}, 6000);
     }
     ```
+    
+* On Android, since 3.3.0 you need to hide the window's titlebar as [described in this blog](http://www.appcelerator.com/blog/2014/08/hiding-the-android-actionbar/).
 
 ## Public properties
 

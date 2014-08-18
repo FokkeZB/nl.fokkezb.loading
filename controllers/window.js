@@ -26,9 +26,14 @@ function init() {
 
     update(args.message, args.cancelable);
 
-    // Bug: https://jira.appcelerator.org/browse/TC-2857
     if (OS_ANDROID) {
+
         $.loadingMask.addEventListener('open', function(e) {
+
+            // http://www.appcelerator.com/blog/2014/08/hiding-the-android-actionbar/
+            $.loadingMask.activity.actionBar.hide();
+
+            // Bug: https://jira.appcelerator.org/browse/TC-2857
             isOpen = true;
         });
     }
