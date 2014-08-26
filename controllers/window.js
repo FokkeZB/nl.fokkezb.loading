@@ -48,7 +48,7 @@ function update(_message, _cancelable) {
 
 function cancel(e) {
 
-    if (!cancelable) {
+    if (!_.isFunction(cancelable)) {
 
         if (OS_ANDROID && e.type === 'androidback') {
             var intent = Ti.Android.createIntent({
@@ -59,9 +59,8 @@ function cancel(e) {
         }
 
         return;
-    }
-
-    if (cancelable) {
+        
+    } else {
         cancelable();
     }
 
