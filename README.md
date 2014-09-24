@@ -48,7 +48,21 @@ The widget provides a simple loading mask that can be easily styled and configur
     }
     ```
     
-* On Android, since 3.3.0 you need to hide the window's titlebar as [described in this blog](http://www.appcelerator.com/blog/2014/08/hiding-the-android-actionbar/).
+* On Android, since 3.3.0 you need to hide the window's titlebar as [described in this blog](http://www.appcelerator.com/blog/2014/08/hiding-the-android-actionbar/). In short, you need to change the theme for the `org.appcelerator.titanium.TiTranslucentActivity` activity to `@style/Theme.AppCompat.Translucent.NoTitleBar` via your `tiapp.xml`:
+
+    
+    ```xml
+    <android>
+      <manifest>
+        <application>
+          <activity android:name="org.appcelerator.titanium.TiTranslucentActivity"
+                    android:configChanges="keyboardHidden|screenSize|portrait"
+                    android:theme="@style/Theme.AppCompat.Translucent.NoTitleBar"/>
+          </activity>
+        </application>
+      </manifest>
+    </android>
+    ```
 
 ## Public properties
 
