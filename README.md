@@ -58,7 +58,6 @@ The widget provides a simple loading mask that can be easily styled and configur
           <activity android:name="org.appcelerator.titanium.TiTranslucentActivity"
                     android:configChanges="keyboardHidden|screenSize|portrait"
                     android:theme="@style/Theme.AppCompat.Translucent.NoTitleBar"/>
-          </activity>
         </application>
       </manifest>
     </android>
