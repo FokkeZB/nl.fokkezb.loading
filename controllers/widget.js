@@ -1,14 +1,32 @@
 var ctrl;
+var showTimeout;
+var message;
 
-function show(_message, _cancelable) {
+function show(_message, _cancelable, _delay) {
+
+    message = _message;
 
     if (ctrl && ctrl.hasFocus) {
-        ctrl.update(_message, _cancelable);
+        ctrl.update(message, _cancelable);
         return;
+    }
+    
+    if (_delay) {
+        if (!showTimeout) {
+            showTimeout = setTimeout(function () {
+                show(message, _cancelable);
+            }, _delay);
+        }
+        return;
+    }
+    
+    if (showTimeout) {
+        clearTimeout(showTimeout);
+        showTimeout = null;
     }
 
     var newCtrl = Widget.createController('window', {
-        message: _message,
+        message: message,
         cancelable: _cancelable
     });
 
@@ -22,7 +40,10 @@ function show(_message, _cancelable) {
 }
 
 function hide() {
-    
+    if (showTimeout) {
+        clearTimeout(showTimeout);
+        showTimeout = null;
+    }
     if (ctrl) {
         ctrl.close();
         ctrl = null;
