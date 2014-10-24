@@ -31,7 +31,7 @@ function init() {
         $.loadingMask.addEventListener('open', function(e) {
 
             // http://www.appcelerator.com/blog/2014/08/hiding-the-android-actionbar/
-            $.loadingMask.activity.actionBar.hide();
+            // $.loadingMask.activity.actionBar.hide();
 
             // Bug: https://jira.appcelerator.org/browse/TC-2857
             isOpen = true;

@@ -7,7 +7,7 @@ function show(_message, _cancelable) {
         return;
     }
 
-    var newCtrl = Widget.createController('window', {
+    var newCtrl = Widget.createController((OS_ANDROID && $.progress) ? 'progress' : 'window', {
         message: _message,
         cancelable: _cancelable
     });
@@ -22,7 +22,7 @@ function show(_message, _cancelable) {
 }
 
 function hide() {
-    
+
     if (ctrl) {
         ctrl.close();
         ctrl = null;
@@ -31,14 +31,16 @@ function hide() {
     return;
 }
 
-Object.defineProperty($, "visible", {
-    get: function () {
+Object.defineProperty($, 'visible', {
+    get: function() {
         return (ctrl && ctrl.hasFocus);
     },
-    set: function (visible) {
+    set: function(visible) {
         return visible ? show() : hide();
     }
 });
 
-exports.show = show;
-exports.hide = hide;
+$.show = show;
+$.hide = hide;
+
+$.progress = true;

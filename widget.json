@@ -3,11 +3,11 @@
 	"name": "nl.fokkezb.loading",
 	"description" : "Displays a simple loading mask.",
 	"author": "Fokke Zandbergen",
-	"version": "1.6.1",
+	"version": "1.7.0",
 	"copyright":"Copyright (c) 2013",
 	"license":"Apache License, Version 2.0",
-	"min-alloy-version": "1.0",
-	"min-titanium-version":"3.0",
+	"min-alloy-version": "1.4",
+	"min-titanium-version":"3.2",
 	"tags":"load,loading,loader,message",
 	"platforms":"android,ios,mobileweb,blackberry"
 }
