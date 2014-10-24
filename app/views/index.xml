@@ -1,6 +1,6 @@
 <Alloy>
 
-	<Window>
+	<Window onOpen="onOpen">
 		
     <Button onClick="example">README example</Button>
 

@@ -18,9 +18,7 @@ module.exports = function(grunt) {
           command: 'build',
           platform: 'ios',
           logLevel: 'trace',
-          iosVersion: 7.1,
-          shadow: true,
-          sdk: '3.3.0.GA'
+          shadow: true
         }
       },
       android: {
@@ -28,8 +26,7 @@ module.exports = function(grunt) {
           command: 'build',
           platform: 'android',
           logLevel: 'trace',
-          shadow: true,
-          sdk: '3.3.0.GA'
+          shadow: true
         }
       }
     }
@@ -39,9 +36,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-titanium');
 
-  grunt.registerTask('update', ['clean', 'copy']);  
+  grunt.registerTask('update', ['clean', 'copy']);
 
-  grunt.registerTask('ios', ['update', 'titanium:ios']);  
+  grunt.registerTask('ios', ['update', 'titanium:ios']);
   grunt.registerTask('android', ['update', 'titanium:android']);
 
   grunt.registerTask('default', ['ios']);
