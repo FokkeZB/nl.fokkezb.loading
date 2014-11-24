@@ -1,11 +1,5 @@
 <Alloy>
-	<Window id="loadingMask" class="loadingMask" onClick="cancel" onFocus="onFocus" onBlur="onBlur">
-		<View id="loadingOuter" class="loadingOuter">
-			<View id="loadingInner" class="loadingInner">
-				<ActivityIndicator id="loadingIndicator" class="loadingIndicator" />
-				<ImageView id="loadingImages" class="loadingImages" />
-				<Label id="loadingMessage" class="loadingMessage" />
-			</View>
-		</View>
+	<Window id="win" class="loadingWindow" onFocus="onFocus" onBlur="onBlur">
+		<Widget id="view" src="nl.fokkezb.loading" name="view" onCancel="hide" />
 	</Window>
 </Alloy>

@@ -1,0 +1,11 @@
+<Alloy>
+  <View id="loadingMask" class="loadingMask" onClick="cancel">
+    <View id="loadingOuter" class="loadingOuter">
+      <View id="loadingInner" class="loadingInner">
+        <ActivityIndicator id="loadingIndicator" class="loadingIndicator" />
+        <ImageView id="loadingImages" class="loadingImages" />
+        <Label id="loadingMessage" class="loadingMessage" />
+      </View>
+    </View>
+  </View>
+</Alloy>

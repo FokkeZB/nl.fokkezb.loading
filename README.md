@@ -13,6 +13,8 @@ By default it uses the native [ProgressIndicator](http://docs.appcelerator.com/t
 * Fully stylable via your `app.tss`.
 * Can be set to be cancelable by user, setting a function to be called in that case.
 * Message and ability to be cancelled can be set every time it's used.
+* Can be via single global instance or local instances.
+* Available as native [ProgressIndicator](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Android.ProgressIndicator) (Android), Window and View.
 
 ## Quick Start [![gitTio](http://gitt.io/badge.png)](http://gitt.io/component/nl.fokkezb.loading)
 
@@ -52,18 +54,54 @@ By default it uses the native [ProgressIndicator](http://docs.appcelerator.com/t
     
 * In Titanium 3.3.0 you need to hide the Android Actionbar as [described in this blog](http://www.appcelerator.com/blog/2014/08/hiding-the-android-actionbar/). If you use Titanium 3.3.1 or later the widget automatically requests for a theme with no actionbar.
 
-## Public properties
+## Global vs Local
+The Quick Start shows how to use the global-mode. You only have to create one global widget instance that will (try to) make sure that there's always one loading mask showing. You can also use one of the 3 available types of loading masks directly as a local instance, as we'll see when we look at the types.
+
+### Types
+The widget exposes different types of loading masks. All types share the same API so you can easily switch between them.
+
+### Native Progress (Android-only)
+
+The global default for Android is to use [ProgressIndicator](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Android.ProgressIndicator). You can disable this by setting the `progress` property of the global widget to `false` or using one of the 2 other types directly in a local instance. The Native Progress type itself can also be used as a local instance:
+
+	var myInstance = Alloy.createWidget('nl.fokkezb.loading', 'progress');
+	myInstance.show('My message', myCancelCallback);	
+### Window
+The only available global mode for iOS is to show a Window. You can also create a local instance:
+
+	var myInstance = Alloy.createWidget('nl.fokkezb.loading', 'window');
+	myInstance.show('My message', myCancelCallback);
+
+### View
+
+You can also create the widget as a local view which you can require in any (composite) layout:
+
+**index.xml**
+
+	<Alloy
+		<Window>
+			<Widget src="nl.fokkezb.loading" name="view" id="myInstance" />
+		</Window>
+	</Alloy>
+
+**index.js**
+
+	$.myInstance.show('My message', myCancelCallback);
+
+## Public API
+All types share the same public API:
 
 ### visible
 You'll get `TRUE` if the loading mask is currently shown. If set to `TRUE` or `FALSE` it will call `show()` or `hide()`.
 
-### progress
+### progress *(global-only)*
 Set to `FALSE` to use the cross-platform loading mask for Android instead of the default native [ProgressIndicator](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Android.ProgressIndicator).
 
-## Public methods
-
 ### show([message],[cancelable]])
-Shows the loading mask or updates the existing, if it's still the top window. Since 1.6 the meaning of the second argument the reverse (`cancelable` instead of `blocking`) and can also be a callback, which would be called if the user taps the mask to cancel the loading activity.
+Shows the loading mask or updates the existing, if it's still the top window. If the second argument is a function, the mask is user-cancelable at which event this method would be called.
+
+### update([message],[cancelable]])
+Updates the existing message and cancelable function.
 
 ### hide()
 Hides the loading mask.
@@ -72,6 +110,7 @@ Hides the loading mask.
 You can style all views from your `app.tss`. The default styles can be found in [window.tss](styles/window.tss). Be aware that the default styles are applied to classses, but to override from your `app.tss` you need to following (identical) IDs:
 
 * `#progressIndicator`: The native Android ProgressIndicator.
+* `#loadingWindow`: The window if using the (default) window mode.
 * `#loadingMask`: The full-screen mask.
     * Set `images` to `true` to use the `#loadingImages` indicator.
 * `#loadingOuter`: The dark box containing the activityIndicator and message.
@@ -84,6 +123,9 @@ You can style all views from your `app.tss`. The default styles can be found in 
 You can override the default message (`Loading..`) by setting the `loadingMessage` in your `strings.xml` files.
 
 ## Changelog
+* 1.8:
+	* New `view` mode to get the loading mask as a view instead of a window.
+	* Consistent public API's for all types and modes.
 * 1.7:
     * Uses native ProgressIndicator for Android
     * Uses the `theme` property to select a theme with no ActionBar.

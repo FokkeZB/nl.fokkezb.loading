@@ -12,7 +12,7 @@ function show(_message, _cancelable) {
         cancelable: _cancelable
     });
 
-    newCtrl.open();
+    newCtrl.show();
 
     if (ctrl) {
         hide();
@@ -24,7 +24,7 @@ function show(_message, _cancelable) {
 function hide() {
 
     if (ctrl) {
-        ctrl.close();
+        ctrl.hide();
         ctrl = null;
     }
 

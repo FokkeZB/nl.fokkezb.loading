@@ -1,0 +1,59 @@
+".loadingMask": {
+  backgroundColor: "#5000",
+  visible: false
+}
+
+".loadingOuter": {
+  width: Ti.UI.SIZE,
+  height: Ti.UI.SIZE,
+  
+  borderRadius: 10,
+  backgroundColor: "#C000"
+}
+
+".loadingInner": {
+  top: '20dp',
+  right: '20dp',
+  bottom: '20dp',
+  left: '20dp',
+  
+  width: Ti.UI.SIZE,
+  height: Ti.UI.SIZE,
+  
+  layout: 'vertical'
+}
+
+".loadingIndicator": {
+  top: '0dp',
+  style: Ti.UI.ActivityIndicatorStyle.BIG
+}
+
+".loadingIndicator[platform=ios]": {
+  style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG
+}
+
+".loadingImages": {
+  top: '0dp',
+  images: [
+    "/images/nl.fokkezb.loading/00.png", "/images/nl.fokkezb.loading/01.png",
+        "/images/nl.fokkezb.loading/02.png", "/images/nl.fokkezb.loading/03.png",
+        "/images/nl.fokkezb.loading/04.png", "/images/nl.fokkezb.loading/05.png",
+        "/images/nl.fokkezb.loading/06.png", "/images/nl.fokkezb.loading/07.png",
+        "/images/nl.fokkezb.loading/08.png", "/images/nl.fokkezb.loading/09.png",
+        "/images/nl.fokkezb.loading/10.png", "/images/nl.fokkezb.loading/11.png"
+  ]
+}
+
+".loadingMessage": {
+  top: '20dp',
+  width: Ti.UI.SIZE,
+  height: Ti.UI.SIZE,
+
+  text: L('loadingMessage', 'Loading..'),
+  
+  color: '#fff',
+  textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+  font: {
+    fontSize: '16dp'
+  }
+}

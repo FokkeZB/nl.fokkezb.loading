@@ -1,37 +1,52 @@
-var args = arguments[0] || {},
-    useImages = false,
-    cancelable = null,
+$.update = update;
+$.show = show;
+$.hide = hide;
 
-    // Bug: https://jira.appcelerator.org/browse/TC-2857
-    isOpen = false;
-
-init();
-
-function init() {
-
-    if ($.loadingMask.images) {
-        useImages = true;
-
-        $.loadingInner.remove($.loadingIndicator);
-        $.loadingIndicator = null;
-
-    } else {
-        $.loadingInner.remove($.loadingImages);
-        $.loadingImages = null;
+Object.defineProperty($, 'visible', {
+    get: function() {
+        return (isOpen && hasFocus);
+    },
+    set: function(visible) {
+        return visible ? show() : hide();
     }
+});
+
+var message;
+var cancelable;
+
+// Bug: https://jira.appcelerator.org/browse/TC-2857
+var isOpen = false;
+
+var hasFocus = false;
+
+(function constructor(args) {
 
     if (OS_ANDROID) {
-        $.loadingMask.addEventListener('androidback', cancel);
+        $.loadingMask.addEventListener('androidback', function onAndroidback() {
+
+            if (!_.isFunction(cancelable)) {
+
+                if (OS_ANDROID && e.type === 'androidback') {
+                    var intent = Ti.Android.createIntent({
+                        action: Ti.Android.ACTION_MAIN
+                    });
+                    intent.addCategory(Ti.Android.CATEGORY_HOME);
+                    Ti.Android.currentActivity.startActivity(intent);
+                }
+
+                return;
+
+            } else {
+                $.view.cancel();
+            }
+        });
     }
 
     update(args.message, args.cancelable);
 
     if (OS_ANDROID) {
 
-        $.loadingMask.addEventListener('open', function(e) {
-
-            // http://www.appcelerator.com/blog/2014/08/hiding-the-android-actionbar/
-            // $.loadingMask.activity.actionBar.hide();
+        $.win.addEventListener('open', function onOpen(e) {
 
             // Bug: https://jira.appcelerator.org/browse/TC-2857
             isOpen = true;
@@ -39,85 +54,48 @@ function init() {
     }
 
     args = null;
-}
+
+})(arguments[0] || {});
 
 function update(_message, _cancelable) {
-    $.loadingMessage.text = _message || L('loadingMessage', 'Loading...');
+    $.view.update(_message, _cancelable);
+
+    message = _message;
     cancelable = _cancelable;
 }
 
-function cancel(e) {
-
-    if (!_.isFunction(cancelable)) {
-
-        if (OS_ANDROID && e.type === 'androidback') {
-            var intent = Ti.Android.createIntent({
-                action: Ti.Android.ACTION_MAIN
-            });
-            intent.addCategory(Ti.Android.CATEGORY_HOME);
-            Ti.Android.currentActivity.startActivity(intent);
-        }
-
-        return;
-        
-    } else {
-        cancelable();
-    }
-
-    close();
-
-    return;
+function show() {
+    $.view.show(message, cancelable);
+    $.win.open();
 }
 
-function open() {
+function hide() {
 
-    $.loadingMask.open();
+    var close = function close() {
+        $.view.hide();
+        $.win.close();
 
-    if (useImages) {
-        $.loadingImages.start();
-    } else {
-        $.loadingIndicator.show();
-    }
-}
-
-function close() {
+        cancelable = null;
+    };
 
     if (!OS_ANDROID || isOpen) {
-        _close();
+        close();
 
-    // Bug: https://jira.appcelerator.org/browse/TC-2857
+        // Bug: https://jira.appcelerator.org/browse/TC-2857
     } else {
-        var interval = setInterval(function () {
+        var interval = setInterval(function atInterval() {
             if (isOpen) {
-                _close();
+                close();
                 clearInterval(interval);
             }
         }, 100);
     }
 }
 
-function _close() {
-
-    $.loadingMask.close();
-
-    if (useImages) {
-        $.loadingImages.stop();
-    } else {
-        $.loadingIndicator.hide();
-    }
-
-    cancelable = null;
-}
-
 function onFocus(e) {
-    $.hasFocus = true;
+    hasFocus = true;
 }
 
 function onBlur(e) {
-    $.hasFocus = false;
+    hasFocus = false;
 }
-
-exports.hasFocus = true;
-exports.open = open;
-exports.update = update;
-exports.close = close;

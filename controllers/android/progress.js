@@ -1,4 +1,18 @@
+$.show = show;
+$.update = update;
+$.hide = hide;
+
+Object.defineProperty($, 'visible', {
+    get: function() {
+        return hasFocus;
+    },
+    set: function(visible) {
+        return visible ? show() : hide();
+    }
+});
+
 var cancelable = null;
+var hasFocus = false;
 
 (function constructor(args) {
 
@@ -21,21 +35,19 @@ function onCancel(e) {
     cancelable = null;
 }
 
-function open() {
+function show(_message, _cancelable) {
+
+    update(_message, _cancelable);
+
     $.progressIndicator.show();
 
-    exports.hasFocus = true;
+    hasFocus = true;
 }
 
-function close() {
+function hide() {
     $.progressIndicator.hide();
 
-    exports.hasFocus = false;
+    hasFocus = false;
 
     cancelable = null;
 }
-
-exports.hasFocus = false;
-exports.open = open;
-exports.update = update;
-exports.close = close;
