@@ -6,19 +6,36 @@ function onOpen() {
   OS_ANDROID && $.index.activity.actionBar.hide();
 }
 
-function example() {
+function global() {
+  Alloy.Globals.loading.show('Loading README example', function onCancel() {
+    alert('Canceled README example');
+  });
 
-  function cancel() {
-    alert('Why?!');
-  }
+  setTimeout(function() {
+    Alloy.Globals.loading.hide();
+  }, 6000);
+}
 
-  function load() {
-    Alloy.Globals.loading.show('Loading something', cancel);
+function view() {
 
-    setTimeout(function() {
-      Alloy.Globals.loading.hide();
-    }, 6000);
-  }
+  $.view.show('Loading VIEW example', function onCancel() {
+    alert('Canceled VIEW example');
+  });
 
-  load();
+  setTimeout(function() {
+    $.view.hide();
+  }, 6000);
+}
+
+function progress() {
+
+  var progress = Alloy.createWidget('nl.fokkezb.loading', 'progress');
+
+  progress.show('Loading VIEW example', function onCancel() {
+    alert('Canceled VIEW example');
+  });
+
+  setTimeout(function() {
+    progress.hide();
+  }, 6000);
 }

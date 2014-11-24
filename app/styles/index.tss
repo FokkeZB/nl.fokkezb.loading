@@ -1,9 +1,4 @@
 "Window": {
   top: Alloy.Globals.top,
-	backgroundColor: 'white',
-  layout: 'vertical'
-}
-
-"Button": {
-  top: 20
+	backgroundColor: 'white'
 }
