@@ -22,7 +22,7 @@ var hasFocus = false;
 (function constructor(args) {
 
     if (OS_ANDROID) {
-        $.loadingMask.addEventListener('androidback', function onAndroidback() {
+        $.win.addEventListener('androidback', function onAndroidback() {
 
             if (!_.isFunction(cancelable)) {
 
