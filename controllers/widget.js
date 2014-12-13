@@ -7,12 +7,9 @@ function show(_message, _cancelable) {
         return;
     }
 
-    var newCtrl = Widget.createController((OS_ANDROID && $.progress) ? 'progress' : 'window', {
-        message: _message,
-        cancelable: _cancelable
-    });
+    var newCtrl = Widget.createController((OS_ANDROID && $.progress) ? 'progress' : 'window');
 
-    newCtrl.show();
+    newCtrl.show(_message, _cancelable);
 
     if (ctrl) {
         hide();
