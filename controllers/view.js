@@ -28,8 +28,6 @@ Object.defineProperty($, 'visible', {
         $.loadingImages = null;
     }
 
-    update(args.message, args.cancelable);
-
     args = null;
 
 })(arguments[0] || {});

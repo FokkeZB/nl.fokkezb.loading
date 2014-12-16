@@ -14,12 +14,6 @@ Object.defineProperty($, 'visible', {
 var cancelable = null;
 var hasFocus = false;
 
-(function constructor(args) {
-
-    update(args.message, args.cancelable);
-
-})(arguments[0] || {});
-
 function update(_message, _cancelable) {
     cancelable = _cancelable;
 

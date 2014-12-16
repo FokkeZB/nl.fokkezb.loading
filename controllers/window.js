@@ -11,7 +11,6 @@ Object.defineProperty($, 'visible', {
     }
 });
 
-var message;
 var cancelable;
 
 // Bug: https://jira.appcelerator.org/browse/TC-2857
@@ -42,8 +41,6 @@ var hasFocus = false;
         });
     }
 
-    update(args.message, args.cancelable);
-
     if (OS_ANDROID) {
 
         $.win.addEventListener('open', function onOpen(e) {
@@ -60,12 +57,12 @@ var hasFocus = false;
 function update(_message, _cancelable) {
     $.view.update(_message, _cancelable);
 
-    message = _message;
     cancelable = _cancelable;
 }
 
-function show() {
-    $.view.show(message, cancelable);
+function show(_message, _cancelable) {
+    $.view.show(_message, _cancelable);
+    
     $.win.open();
 }
 
