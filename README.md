@@ -101,7 +101,7 @@ Set to `FALSE` to use the cross-platform loading mask for Android instead of the
 Shows the loading mask or updates the existing, if it's still the top window. If the second argument is a function, the mask is user-cancelable at which event this method would be called.
 
 ### update([message],[cancelable]])
-Updates the existing message and cancelable function.
+Updates the existing message and cancelable function. Not available in global-mode, where you'd simply call `show()` again.
 
 ### hide()
 Hides the loading mask.
