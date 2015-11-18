@@ -1,0 +1,5 @@
+'#loadingMask': {
+
+	// set to true to use images instead of indicators
+	images: false
+}

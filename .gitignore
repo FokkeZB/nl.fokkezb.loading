@@ -2,3 +2,4 @@ app/widgets
 build
 node_modules
 Resources
+.DS_Store

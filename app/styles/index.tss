@@ -1,4 +1,4 @@
 "Window": {
-  top: Alloy.Globals.top,
+	top: Alloy.Globals.top,
 	backgroundColor: 'white'
 }

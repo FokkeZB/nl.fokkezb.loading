@@ -1,15 +1,13 @@
 <Alloy>
-
 	<Window onOpen="onOpen">
 		
-    <Button onClick="global" top="100">GLOBAL example</Button>
+	    <Button onClick="global" top="100">GLOBAL example</Button>
 
-    <Button onClick="view" top="200">VIEW example</Button>
+	    <Button onClick="view" top="200">VIEW example</Button>
 
-    <Button onClick="progress" top="300" platform="android">PROGRESS example</Button>
+	    <Button onClick="progress" top="300" platform="android">PROGRESS example</Button>
 
-    <Widget id="view" src="nl.fokkezb.loading" name="view" />
+	    <Widget id="view" src="nl.fokkezb.loading" name="view" />
 
 	</Window>
-
 </Alloy>
