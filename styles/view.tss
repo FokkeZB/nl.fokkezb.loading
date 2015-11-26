@@ -28,10 +28,6 @@
   style: Ti.UI.ActivityIndicatorStyle.BIG
 }
 
-".loadingIndicator[platform=ios]": {
-  style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG
-}
-
 ".loadingImages": {
   top: '0dp',
   images: [
