@@ -3,7 +3,7 @@
 	"name": "nl.fokkezb.loading",
 	"description" : "Displays a simple loading mask.",
 	"author": "Fokke Zandbergen",
-	"version": "1.8.3",
+	"version": "1.8.4",
 	"copyright":"Copyright (c) 2013",
 	"license":"Apache License, Version 2.0",
 	"min-alloy-version": "1.4",
