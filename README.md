@@ -66,6 +66,7 @@ The global default for Android is to use [ProgressIndicator](http://docs.appcele
 
 	var myInstance = Alloy.createWidget('nl.fokkezb.loading', 'progress');
 	myInstance.show('My message', myCancelCallback);	
+
 ### Window
 The only available global mode for iOS is to show a Window. You can also create a local instance:
 
@@ -74,7 +75,7 @@ The only available global mode for iOS is to show a Window. You can also create 
 
 ### View
 
-You can also create the widget as a local view which you can require in any (composite) layout:
+You can also create the widget as a local view which you can require in any (composite) layout. The typical use case for this is to display the widget over a modal window since the window-type would open behind such a window and be invisible.
 
 **index.xml**
 
