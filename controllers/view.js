@@ -1,10 +1,11 @@
-var useImages = false,
+var useImages  = false,
     cancelable = null;
 
-$.show = show;
-$.hide = hide;
-$.update = update;
-$.cancel = cancel;
+$.show    = show;
+$.hide    = hide;
+$.update  = update;
+$.success = success;
+$.cancel  = cancel;
 
 Object.defineProperty($, 'visible', {
     get: function() {
@@ -19,10 +20,8 @@ Object.defineProperty($, 'visible', {
 
     if ($.loadingMask.images) {
         useImages = true;
-
         $.loadingInner.remove($.loadingIndicator);
         $.loadingIndicator = null;
-
     } else {
         $.loadingInner.remove($.loadingImages);
         $.loadingImages = null;
@@ -31,6 +30,18 @@ Object.defineProperty($, 'visible', {
     args = null;
 
 })(arguments[0] || {});
+
+function success(_message) {
+    $.loadingMessage.text = _message || L('loadingSuccessMessage', 'Success');
+    if (useImages) {
+        $.loadingImages.hide();
+        $.loadingImages.setHeight('0dp');
+    } else {
+        $.loadingIndicator.hide();
+        $.loadingIndicator.setHeight('0dp');
+    }
+    $.loadingSuccessImage.setHeight(Ti.UI.SIZE);
+}
 
 function update(_message, _cancelable) {
     $.loadingMessage.text = _message || L('loadingMessage', 'Loading...');
