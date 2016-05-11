@@ -1,41 +1,46 @@
 $.index.open();
 
-function onOpen() {
+var onOpen = function() {
+    // so we can see if the actionBar of the widget is properly hidden
+    return OS_ANDROID && $.index.activity.actionBar.hide();
+};
 
-  // so we can see if the actionBar of the widget is properly hidden
-  OS_ANDROID && $.index.activity.actionBar.hide();
-}
+var global = function() {
+    Alloy.Globals.loading.show('Loading README example', function onCancel() {
+        alert('Canceled README example');
+    });
 
-function global() {
-  Alloy.Globals.loading.show('Loading README example', function onCancel() {
-    alert('Canceled README example');
-  });
+    setTimeout(function() {
+        Alloy.Globals.loading.hide();
+    }, 6000);
+};
 
-  setTimeout(function() {
-    Alloy.Globals.loading.hide();
-  }, 6000);
-}
+var view = function() {
+    $.view.show('Loading VIEW example', function onCancel() {
+        alert('Canceled VIEW example');
+    });
 
-function view() {
+    setTimeout(function() {
+        $.view.hide();
+    }, 6000);
+};
 
-  $.view.show('Loading VIEW example', function onCancel() {
-    alert('Canceled VIEW example');
-  });
+var progress = function() {
+    var progress = Alloy.createWidget('nl.fokkezb.loading', 'progress');
 
-  setTimeout(function() {
-    $.view.hide();
-  }, 6000);
-}
+    progress.show('Loading VIEW example', function onCancel() {
+        alert('Canceled VIEW example');
+    });
 
-function progress() {
+    setTimeout(function() {
+        progress.hide();
+    }, 6000);
+};
 
-  var progress = Alloy.createWidget('nl.fokkezb.loading', 'progress');
+var success = function() {
+    $.view.success('Loading SUCCESS example');
 
-  progress.show('Loading VIEW example', function onCancel() {
-    alert('Canceled VIEW example');
-  });
-
-  setTimeout(function() {
-    progress.hide();
-  }, 6000);
-}
+    setTimeout(function() {
+        $.view.hide();
+    }, 6000);
+};
