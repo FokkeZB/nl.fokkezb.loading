@@ -1,4 +1,5 @@
-# Loading Mask Widget [![Titanium](http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png)](http://www.appcelerator.com/titanium/) [![Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http://www.appcelerator.com/alloy/)
+# Loading Mask Widget
+
 ## Overview
 This is a widget for the [Alloy](http://projects.appcelerator.com/alloy/docs/Alloy-bootstrap/index.html) MVC framework of [Appcelerator](http://www.appcelerator.com)'s [Titanium](http://www.appcelerator.com/platform) platform.
 
@@ -16,9 +17,9 @@ By default it uses the native [ProgressIndicator](http://docs.appcelerator.com/t
 * Can be via single global instance or local instances.
 * Available as native [ProgressIndicator](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Android.ProgressIndicator) (Android), Window and View.
 
-## Quick Start [![gitTio](http://gitt.io/badge.png)](http://gitt.io/component/nl.fokkezb.loading)
+## Quick Start [![gitTio](http://img.shields.io/badge/on-gittio-00B4CC.svg)](http://gitt.io/component/nl.fokkezb.loading) [![npm](http://img.shields.io/npm/v/alloy-widget-nl.fokkezb.loading.svg)](https://www.npmjs.org/package/alloy-widget-nl.fokkezb.loading)
 
-* Use `gittio install nl.fokkezb.loading` to install via [gitTio](http://gitt.io/cli) or:
+* Use `gittio install nl.fokkezb.loading` to install via [gitTio](http://gitt.io/cli) or `npm i alloy-widget-nl.fokkezb.loading` to install via NPM or:
 
   * Download the latest [release](https://github.com/FokkeZB/nl.fokkezb.loading/releases) of the widget.
   * Unzip the folder to your project under `app/widgets/nl.fokkezb.loading`.

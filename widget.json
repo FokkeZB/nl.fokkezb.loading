@@ -5,7 +5,7 @@
 	"author": "Fokke Zandbergen",
 	"version": "1.8.4",
 	"copyright":"Copyright (c) 2013",
-	"license":"Apache License, Version 2.0",
+	"license":"Apache-2.0",
 	"min-alloy-version": "1.4",
 	"min-titanium-version":"3.2",
 	"tags":"load,loading,loader,message",

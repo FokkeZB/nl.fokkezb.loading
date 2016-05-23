@@ -1,0 +1,32 @@
+{
+  "name": "alloy-widget-nl.fokkezb.loading",
+  "version": "1.8.4",
+  "description": "Displays a simple loading mask.",
+  "main": "widget.json",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FokkeZB/nl.fokkezb.loading.git"
+  },
+  "keywords": [
+    "load",
+    "loading",
+    "loader",
+    "message",
+    "appcelerator",
+    "titanium",
+    "alloy",
+    "widget"
+  ],
+  "author": "Fokke Zandbergen",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/FokkeZB/nl.fokkezb.loading/issues"
+  },
+  "homepage": "https://github.com/FokkeZB/nl.fokkezb.loading#readme"
+}
