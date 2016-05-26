@@ -1,6 +1,7 @@
-$.update = update;
-$.show = show;
-$.hide = hide;
+$.success = success;
+$.update  = update;
+$.show    = show;
+$.hide    = hide;
 
 Object.defineProperty($, 'visible', {
     get: function() {
@@ -54,6 +55,10 @@ var hasFocus = false;
 
 })(arguments[0] || {});
 
+function success(_message) {
+    $.view.success(_message);
+}
+
 function update(_message, _cancelable) {
     $.view.update(_message, _cancelable);
 
@@ -62,7 +67,7 @@ function update(_message, _cancelable) {
 
 function show(_message, _cancelable) {
     $.view.show(_message, _cancelable);
-    
+
     $.win.open();
 }
 

@@ -6,7 +6,7 @@
 ".loadingOuter": {
   width: Ti.UI.SIZE,
   height: Ti.UI.SIZE,
-  
+
   borderRadius: 10,
   backgroundColor: "#C000"
 }
@@ -16,16 +16,22 @@
   right: '20dp',
   bottom: '20dp',
   left: '20dp',
-  
+
   width: Ti.UI.SIZE,
   height: Ti.UI.SIZE,
-  
+
   layout: 'vertical'
 }
 
 ".loadingIndicator": {
   top: '0dp',
   style: Ti.UI.ActivityIndicatorStyle.BIG
+}
+
+".loadingSuccessImage": {
+    top: '0dp',
+    image: "/images/nl.fokkezb.loading/checkmark.png",
+    height: '0dp'
 }
 
 ".loadingImages": {
@@ -46,7 +52,7 @@
   height: Ti.UI.SIZE,
 
   text: L('loadingMessage', 'Loading..'),
-  
+
   color: '#fff',
   textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
   font: {
