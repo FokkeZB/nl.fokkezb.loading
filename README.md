@@ -24,34 +24,29 @@ By default it uses the native [ProgressIndicator](http://docs.appcelerator.com/t
   * Download the latest [release](https://github.com/FokkeZB/nl.fokkezb.loading/releases) of the widget.
   * Unzip the folder to your project under `app/widgets/nl.fokkezb.loading`.
   * Add the widget as a dependency to your `app/config.json` file:
-
-        ```javascript
-        "dependencies": {
-            "nl.fokkezb.loading":"*"
-        }
-        ```
-    
+    ```json
+    "dependencies": {
+        "nl.fokkezb.loading":"*"
+    }
+    ```
 * Create a global instance of the widget in `alloy.js`:
-
-    ```javascript
-    Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
-    ```
-
+  ```javascript
+  Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
+  ```
 * Show and hide the loading mask when you need it:
-
-    ```javascript
-    function cancel() {
-        alert('Why?!');
-    }
-    
-    function load() {
-        Alloy.Globals.loading.show('Your message', false);
-        
-        setTimeout(function(){
-            Alloy.Globals.loading.hide();
-        }, 6000);
-    }
-    ```
+  ```javascript
+  function cancel() {
+      alert('Why?!');
+  }
+      
+  function load() {
+      Alloy.Globals.loading.show('Your message', false);
+          
+      setTimeout(function(){
+          Alloy.Globals.loading.hide();
+      }, 6000);
+  }
+  ```
     
 * In Titanium 3.3.0 you need to hide the Android Actionbar as [described in this blog](http://www.appcelerator.com/blog/2014/08/hiding-the-android-actionbar/). If you use Titanium 3.3.1 or later the widget automatically requests for a theme with no actionbar.
 
@@ -65,14 +60,18 @@ The widget exposes different types of loading masks. All types share the same AP
 
 The global default for Android is to use [ProgressIndicator](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Android.ProgressIndicator). You can disable this by setting the `progress` property of the global widget to `false` or using one of the 2 other types directly in a local instance. The Native Progress type itself can also be used as a local instance:
 
-	var myInstance = Alloy.createWidget('nl.fokkezb.loading', 'progress');
-	myInstance.show('My message', myCancelCallback);	
+```javascript
+var myInstance = Alloy.createWidget('nl.fokkezb.loading', 'progress');
+myInstance.show('My message', myCancelCallback);	
+```
 
 ### Window
 The only available global mode for iOS is to show a Window. You can also create a local instance:
 
-	var myInstance = Alloy.createWidget('nl.fokkezb.loading', 'window');
-	myInstance.show('My message', myCancelCallback);
+```javascript
+var myInstance = Alloy.createWidget('nl.fokkezb.loading', 'window');
+myInstance.show('My message', myCancelCallback);
+```
 
 ### View
 
@@ -80,15 +79,19 @@ You can also create the widget as a local view which you can require in any (com
 
 **index.xml**
 
-	<Alloy
-		<Window>
-			<Widget src="nl.fokkezb.loading" name="view" id="myInstance" />
-		</Window>
-	</Alloy>
+```xml
+<Alloy>
+    <Window>
+	<Widget src="nl.fokkezb.loading" name="view" id="myInstance" />
+    </Window>
+</Alloy>
+```
 
 **index.js**
 
-	$.myInstance.show('My message', myCancelCallback);
+```javascript
+$.myInstance.show('My message', myCancelCallback);
+```
 
 ## Public API
 All types share the same public API:
