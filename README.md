@@ -96,20 +96,24 @@ $.myInstance.show('My message', myCancelCallback);
 ## Public API
 All types share the same public API:
 
-### visible
-You'll get `TRUE` if the loading mask is currently shown. If set to `TRUE` or `FALSE` it will call `show()` or `hide()`.
+### Attributes
+|Name|Type|Access|Description|
+|---|---|---|---|
+|`visible`|`boolean`|`read`, `write`|You'll get `true` if the loading mask is currently shown. If set to `true` or `false` it will call `show()` or `hide()`.|
 
-### progress *(global-only)*
-Set to `FALSE` to use the cross-platform loading mask for Android instead of the default native [ProgressIndicator](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Android.ProgressIndicator).
+### Widget instantiation params
 
-### show([message],[cancelable]])
-Shows the loading mask or updates the existing, if it's still the top window. If the second argument is a function, the mask is user-cancelable at which event this method would be called.
+|Name|Values|Description|
+|---|---|---|
+|`progress` *(global-only)*|`'progress'`, `true`, `false`|Set to `false` to use the cross-platform loading mask for Android instead of the default native [ProgressIndicator](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Android.ProgressIndicator).|
 
-### update([message],[cancelable]])
-Updates the existing message and cancelable function. Not available in global-mode, where you'd simply call `show()` again.
+### Methods
 
-### hide()
-Hides the loading mask.
+|Name|Params|Description|
+|---|---|---|
+|`show`|`([message][, cancelable])`|Shows the loading mask or updates the existing, if it's still the top window. If the second argument is a function, the mask is user-cancelable at which event this method would be called.|
+|`update`|`([message][, cancelable])`|Updates the existing message and cancelable function. Not available in global-mode, where you'd simply call `show()` again.|
+|`hide`|`null`|Hides the loading mask.|
 
 ## Styling
 You can style all views from your `app.tss`. The default styles can be found in [window.tss](styles/window.tss). Be aware that the default styles are applied to classses, but to override from your `app.tss` you need to following (identical) IDs:
