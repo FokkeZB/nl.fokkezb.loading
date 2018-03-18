@@ -1,4 +1,5 @@
 > **ARCHIVED**
+> Contact [mail@fokkezb.nl](mailto:mail@fokkezb.nl) if you'd like to take it over.
 
 # Loading Mask Widget
 
