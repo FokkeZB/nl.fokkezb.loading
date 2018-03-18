@@ -1,3 +1,5 @@
+> **ARCHIVED**
+
 # Loading Mask Widget
 
 ## Overview
